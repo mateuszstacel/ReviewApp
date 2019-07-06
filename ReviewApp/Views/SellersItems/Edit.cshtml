@@ -1,0 +1,106 @@
+﻿@model ReviewApp.Models.SellersItems
+
+@{
+ 
+    Layout = "_LayoutSeller";
+}
+
+<div style="width:100%; color: white;margin:auto;text-align: center; margin-top: 35px;display:inline-block;">
+    <div class="" style="width: 90%;  margin-left:5%; ">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" style="width:40%; margin-left:37%;">
+                <label asp-for="Image" class="control-label">Item Image</label>
+                <input asp-for="Image" type="file" name="files" class="form-control" required />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div style="clear:both"></div>
+            <div class="form-group" style="width:33%;float:left; margin-left: 20%;">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" required />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" style="width:33%;float:left; margin-left: 5%;">
+                <label asp-for="ItemName" class="control-label"></label>
+                <input asp-for="ItemName" class="form-control" required />
+                <span asp-validation-for="ItemName" class="text-danger"></span>
+            </div>
+            <div style="clear:both"></div>
+            <div class="form-group" style="width:33%;float:left; margin-left: 20%;">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" required />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="width:33%;float:left; margin-left: 5%;">
+                <label asp-for="StoreName" class="control-label"></label>
+                <input asp-for="StoreName" class="form-control" required />
+                <span asp-validation-for="StoreName" class="text-danger"></span>
+            </div>
+            <div style="clear:both"></div>
+            <div class="form-group" style="width:33%;float:left; margin-left: 20%;">
+                <label asp-for="KeyWords" class="control-label"></label>
+                <input asp-for="KeyWords" class="form-control" required />
+                <span asp-validation-for="KeyWords" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="width:33%;float:left; margin-left: 5%;">
+                <label asp-for="ReviesNeeded" class="control-label"></label>
+                <select asp-for="ReviesNeeded" class="form-control">
+                    <option value="1">how many reviews do you need?</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+                <span asp-validation-for="ReviesNeeded" class="text-danger"></span>
+            </div>
+            <div style="clear:both"></div>
+            <div class="form-group" style="width:33%;float:left; margin-left: 20%;">
+                <label value="John" asp-for="RefundDaysTime" class="control-label">refund</label>
+                <select asp-for="RefundDaysTime" class="form-control">
+                    <option value="1">how many days after review do you need?</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <span asp-validation-for="RefundDaysTime" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="width:33%;float:left; margin-left: 5%;">
+                <label asp-for="Ppfee" class="control-label">PPFee</label>
+                <select asp-for="Ppfee" class="form-control">
+                    <option value="No">Do you cover Paypal Fee?</option>
+                    <option value="True">Yes</option>
+                    <option value="False">No</option>
+                </select>
+                <span asp-validation-for="Ppfee" class="text-danger"></span>
+            </div>
+            <div style="clear:both"></div>
+            <div class="form-group" style="width:71%;float:left; margin-left: 20%;">
+                <label asp-for="Categories" class="control-label"></label>
+                <select asp-for="Categories" class="form-control">
+                    <option value="BeautyHealth">beauty&health</option>
+                    <option value="ClothingShoesJewelry">clothing&shoes&jewelry</option>
+                    <option value="ElectronicsComputers">electronics&computers</option>
+                    <option value="HomeGardenTools">home&garden&tools</option>
+                    <option value="KidsBaby">kids&baby</option>
+                    <option value="SportsOutdoors">sports&outdoors</option>
+                    <option value="Toys">toys</option>
+                    <option value="PetSupplies">pet&supplies</option>
+                    <option value="Cars">cars</option>
+                </select>
+                <span asp-validation-for="Categories" class="text-danger"></span>
+            </div><br />
+
+            <div style="clear:both"></div>
+            <div id="btnSubmit" style="text-align:left; margin-left:52%;">
+                <input type="submit" value="Update" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>

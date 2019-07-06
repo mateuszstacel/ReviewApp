@@ -1,0 +1,69 @@
+﻿body {
+    /*background-image: url('../images/backgroundd.png');*/
+    background-image: url('../images/backgroundhome.png');
+   
+}
+
+.form-size {
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    color: black;
+    border-radius: 3%;
+}
+
+#logo {
+    width: 10%;
+    margin: auto;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+}
+
+#login-button {
+    -webkit-box-shadow: 5px 5px 11px 0px rgba(145,151,153,1);
+    -moz-box-shadow: 5px 5px 11px 0px rgba(145,151,153,1);
+    box-shadow: 5px 5px 11px 0px rgba(145,151,153,1);
+    font-weight: bolder;
+}
+
+    #login-button:hover {
+        background-color: forestgreen;
+        color: white;
+        border-color: white;
+        border-width: 3px;
+        font-weight: bolder;
+    }
+
+#registration {
+    background-color: white;
+    border: 2px solid black;
+}
+
+#registerSign {
+    color: white;
+    margin-left: 80%;
+}
+
+    #registerSign:hover {
+        color: black;
+        cursor: pointer;
+    }
+
+#backToLogin {
+    color: white;
+    margin-left: 80%;
+    display:none;
+}
+
+#backToLogin:hover {
+        color: black;
+        cursor: pointer;
+    }
+
+#errorContainer {
+    width: 50%;
+    margin: auto;
+}

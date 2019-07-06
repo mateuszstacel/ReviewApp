@@ -1,0 +1,90 @@
+﻿@model ReviewApp.Models.SellersItems
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SellersItems</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ItemName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StoreName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StoreName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.KeyWords)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.KeyWords)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReviesNeeded)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReviesNeeded)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RefundDaysTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RefundDaysTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ppfee)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ppfee)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Categories)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Categories)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
+</body>
+</html>

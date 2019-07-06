@@ -1,0 +1,98 @@
+﻿body {
+    background-image: url('../images/backgroundhome.png');
+}
+#mainContainer
+{
+    margin-top: 5%;
+}
+
+
+.BtnDetails {
+    width: 60%;
+    height: 3em;
+    font-size: 8px;
+    background-color: dodgerblue;
+    border-radius: 1em;
+}
+
+.Refund {
+    font-size: 9px;
+    text-align: center;
+}
+
+.Paypal {
+    font-size: 9px;
+    padding: 5px;
+    float: right;
+}
+
+.reviewCount {
+    font-size: 9px;
+    padding: 5px;
+    float: left;
+}
+
+.cardBody {
+    color: white;
+    background-color: Black;
+    width: 100%;
+    height: 10em;
+    margin-top: 5px;
+    border-radius: 1em;
+    color: black;
+}
+
+.Price {
+    color: yellow;
+    float: none;
+    text-align: center;
+    font-size: initial;
+    float: right;
+}
+
+.createdAt {
+    width: auto;
+    display: inline-block;
+    font-size: 10px;
+    float: left;
+
+}
+
+
+.itemName {
+    color:white;
+    background-color: black;
+    width: 100%;
+    padding: 5px;
+    height: 2em;
+    margin-top: 5px;
+    border-radius: 1em;
+}
+
+.imageDiv {
+    width: 100%;
+
+    height: 13em;
+    background-color: white;
+    margin: auto;
+    border-radius: 1em;
+}
+
+.div-cardd {
+    padding: 1em;
+    float: left;
+}
+
+.cardd {
+    color:black;
+    width: 19em;
+    height: 28em;
+    background-color: white;
+    border-radius: 1em;
+    padding: 5px;
+    -webkit-box-shadow: 1px 1px 3px 6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 3px 6px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 3px 6px rgba(0,0,0,0.75);
+    
+}
+

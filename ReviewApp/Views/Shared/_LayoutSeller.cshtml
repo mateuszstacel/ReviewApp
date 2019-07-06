@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/css/navbar.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ReviewApp</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/btnColorChange.js"></script>
+    <link href="~/css/sidebar.css" rel="stylesheet" />
+    <script src="~/js/sidebar.js"></script>
+</head>
+<body style="background-image: url('../../images/Gray-Background.png'); background-repeat: no-repeat;background-repeat: repeat-y;">
+    <nav id="navbar" class=" bacgroundOpacity navbar navbar-expand-lg navbar-fixed-top navbar-dark " style="background-image: url('../../images/Gray-Background.png');">
+        <div href="@Url.Action("Index", "Home")" id="logoDiv">
+            <img class="logostars" src="~/images/5-stars-transparent-3.png" />
+            <img class="logostars" src="~/images/loginLogo.png" />
+        </div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+
+
+                <div id="homebtn" class="nav-item active">
+                    <a style="margin:10px;" class="nav-link" href="@Url.Action("Index", "Home")">Home <span class="sr-only">(current)</span></a>
+                </div>
+                <div id="homebtn" class="nav-item active">
+                    <a style="margin:10px;" class="nav-link" href="@Url.Action("MyItems", "SellersItems")"><p>my Items</p><span class="sr-only">(current)</span></a>
+                </div>
+                <div id="homebtn" class="nav-item active">
+                    <a style="margin:10px;" class="nav-link" href="@Url.Action("SoldItems", "SellersItems")">Sold Items<span class="sr-only">(current)</span></a>
+                </div>
+                <div id="homebtn" class="nav-item active">
+                    <a style="margin:10px;" class="nav-link" href="@Url.Action("ItemsToRefund", "SellersItems")">Items To Refund<span class="sr-only">(current)</span></a>
+                </div>
+                <div id="homebtn" class="nav-item active">
+                    <a style="margin:10px;" class="nav-link" href="@Url.Action("Create", "SellersItems")">Create New<span class="sr-only">(current)</span></a>
+                </div>
+                <div id="homebtn" class="nav-item active">
+                    <a style="margin:10px; color: white" class="nav-link" href="@Url.Action("login", "login")"><b>Logout</b><span class="sr-only">(current)</span></a>
+                </div>
+
+
+            </ul>
+        </div>
+    </nav>
+
+
+
+
+
+
+    <partial name="_CookieConsentPartial" />
+
+
+
+    <div class="container">
+        @RenderBody()
+
+    </div>
+
+    <environment include="Development">
+
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

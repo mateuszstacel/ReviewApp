@@ -1,0 +1,304 @@
+﻿@model IEnumerable<ReviewApp.Models.SellersItems>
+@{
+    if (ViewBag.role == "seller")
+    {
+        Layout = "_LayoutSeller";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+
+}
+    <div style="margin-top:5%; margin-left: 6%;" class=" body-content">
+
+        @foreach (var item in Model.Reverse())
+        {
+            Boolean complete = false;
+
+            foreach (var id in ViewBag.itemsID)
+            {
+
+                if (id == item.Id.ToString())
+                {
+                    if (item.ReviesNeeded == 1)
+                    {
+                        var base64 = Convert.ToBase64String(item.Image);
+                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                        //  <img style="width:100px; height: 100px;" src="@imgSrc" />
+                        string price = item.Price + "£";
+                        string ppFeeIncluded = "";
+                        if (item.Ppfee == true)
+                        {
+                            ppFeeIncluded = "Included";
+                        }
+                        else
+                        {
+                            ppFeeIncluded = "Not Included";
+                        }
+
+                        <div class="div-cardd" styl>
+                            <div class="cardd" style=" background-color:white; color: black; height: 29em;">
+                                <div class="createdAt">
+                                    <small>created at : @item.CreatedAt</small>
+                                </div>
+
+                                <div class="Price" style=" color: black;">
+                                    <b>@price</b>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <b><hr style=" margin-top: -3px; color:black" /></b>
+                                <div class="imageDiv" style=" margin-top: -13px; border: 2px solid black;">
+                                    <img style="width:100%; height: 100%;border-radius: 1em;" src="@imgSrc" />
+                                </div>
+
+                                <div class="itemName" style=" font-size: 13px; height: 2.2em; background-color:black; color: white; text-align:center;overflow: auto;">
+                                    @item.ItemName
+                                </div>
+
+                                <div class="cardBody " style=" background-color:black; color:white;">
+                                    <div class="reviewCount">
+                                        <b style=" color: yellow;">reviews required</b> <br />
+                                        <p style="text-align: center"><b class="blink">LAST ITEM !</b></p>
+                                    </div>
+
+                                    <div class="Paypal">
+                                        <b style=" color: yellow;">PaypalFee Inluded?</b><br />
+                                        <p style="text-align: center"><b>@ppFeeIncluded</b></p>
+                                    </div>
+
+                                    <div style="clear:both;"></div>
+
+                                    <div class="Refund">
+                                        <b style=" color: yellow;">Days to refund After Review is live</b><br />
+                                        <p style="text-align: center"><b>@item.RefundDaysTime</b></p>
+                                    </div>
+
+                                    <div style=" text-align:center; ">
+                                        @*//<button asp-action="SellersItems/Details/@item.Id" class="BtnDetails oreInfoBtnIndex" id="moreInfoBtnIndex" value="@item.Id">More Details</button>*@
+                                        <button type="button" title="You already Purchased this item" class="btn btn-danger" disabled>Already Purchased</button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+
+
+
+                    if (item.ReviesNeeded != 0 && item.ReviesNeeded != 1)
+                    {
+                        var base64 = Convert.ToBase64String(item.Image);
+                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                        //  <img style="width:100px; height: 100px;" src="@imgSrc" />
+                        string price = item.Price + "£";
+                        string ppFeeIncluded = "";
+                        if (item.Ppfee == true)
+                        {
+                            ppFeeIncluded = "Included";
+                        }
+                        else
+                        {
+                            ppFeeIncluded = "Not Included";
+                        }
+
+                        <div class="div-cardd" styl>
+                            <div class="cardd" style=" background-color:white; color: black; height: 29em;">
+                                <div class="createdAt">
+                                    <small>created at : @item.CreatedAt</small>
+                                </div>
+
+                                <div class="Price" style=" color: black;">
+                                    <b>@price</b>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <b><hr style=" margin-top: -3px; color:black" /></b>
+                                <div class="imageDiv" style=" margin-top: -13px; border: 2px solid black;">
+                                    <img style="width:100%; height: 100%;border-radius: 1em;" src="@imgSrc" />
+                                </div>
+
+                                <div class="itemName" style=" font-size: 13px; height: 2.2em; background-color:black; color: white; text-align:center;overflow: auto;">
+                                    @item.ItemName
+                                </div>
+
+                                <div class="cardBody" style=" background-color:black; color:white;">
+                                    <div class="reviewCount">
+                                        <b style=" color: yellow;">reviews required</b> <br />
+                                        <p style="text-align: center"><b>@item.ReviesNeeded more</b></p>
+                                    </div>
+
+                                    <div class="Paypal">
+                                        <b style=" color: yellow;">PaypalFee Inluded?</b><br />
+                                        <p style="text-align: center"><b>@ppFeeIncluded</b></p>
+                                    </div>
+
+                                    <div style="clear:both;"></div>
+
+                                    <div class="Refund">
+                                        <b style=" color: yellow;">Days to refund After Review is live</b><br />
+                                        <p style="text-align: center"><b>@item.RefundDaysTime</b></p>
+                                    </div>
+
+                                    <div style=" text-align:center; ">
+                                        @*//<button asp-action="SellersItems/Details/@item.Id" class="BtnDetails oreInfoBtnIndex" id="moreInfoBtnIndex" value="@item.Id">More Details</button>*@
+                                        <button type="button" title="You already Purchased this item" class="btn btn-danger" disabled>Already Purchased</button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+                    complete = true;
+                }
+            }
+
+            if (complete)
+            {
+                continue;
+            }
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            if (item.ReviesNeeded == 1)
+            {
+                var base64 = Convert.ToBase64String(item.Image);
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                //  <img style="width:100px; height: 100px;" src="@imgSrc" />
+                string price = item.Price + "£";
+                string ppFeeIncluded = "";
+                if (item.Ppfee == true)
+                {
+                    ppFeeIncluded = "Included";
+                }
+                else
+                {
+                    ppFeeIncluded = "Not Included";
+                }
+
+                <div class="div-cardd" styl>
+                    <div class="cardd" style=" background-color:white; color: black; height: 29em;">
+                        <div class="createdAt">
+                            <small>created at : @item.CreatedAt</small>
+                        </div>
+
+                        <div class="Price" style=" color: black;">
+                            <b>@price</b>
+                        </div>
+                        <div style="clear:both;"></div>
+                        <b><hr style=" margin-top: -3px; color:black" /></b>
+                        <div class="imageDiv" style=" margin-top: -13px; border: 2px solid black;">
+                            <img style="width:100%; height: 100%;border-radius: 1em;" src="@imgSrc" />
+                        </div>
+
+                        <div class="itemName" style=" font-size: 13px; height: 2.2em; background-color:black; color: white; text-align:center;overflow: auto;">
+                            @item.ItemName
+                        </div>
+
+                        <div class="cardBody " style=" background-color:black; color:white;">
+                            <div class="reviewCount">
+                                <b style=" color: yellow;">reviews required</b> <br />
+                                <p style="text-align: center"><b class="blink">LAST ITEM !</b></p>
+                            </div>
+
+                            <div class="Paypal">
+                                <b style=" color: yellow;">PaypalFee Inluded?</b><br />
+                                <p style="text-align: center"><b>@ppFeeIncluded</b></p>
+                            </div>
+
+                            <div style="clear:both;"></div>
+
+                            <div class="Refund">
+                                <b style=" color: yellow;">Days to refund After Review is live</b><br />
+                                <p style="text-align: center"><b>@item.RefundDaysTime</b></p>
+                            </div>
+
+                            <div style=" text-align:center; ">
+                                @*//<button asp-action="SellersItems/Details/@item.Id" class="BtnDetails oreInfoBtnIndex" id="moreInfoBtnIndex" value="@item.Id">More Details</button>*@
+                                <button type="button" title="Edit report" class="BtnDetails" onclick="location.href = '@Url.Action("Details", "SellersItems", new {id = item.Id})'">More Details</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+
+
+            if (item.ReviesNeeded != 0 && item.ReviesNeeded != 1)
+            {
+                var base64 = Convert.ToBase64String(item.Image);
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                //  <img style="width:100px; height: 100px;" src="@imgSrc" />
+                string price = item.Price + "£";
+                string ppFeeIncluded = "";
+                if (item.Ppfee == true)
+                {
+                    ppFeeIncluded = "Included";
+                }
+                else
+                {
+                    ppFeeIncluded = "Not Included";
+                }
+
+                <div class="div-cardd" styl>
+                    <div class="cardd" style=" background-color:white; color: black; height: 29em;">
+                        <div class="createdAt">
+                            <small>created at : @item.CreatedAt</small>
+                        </div>
+
+                        <div class="Price" style=" color: black;">
+                            <b>@price</b>
+                        </div>
+                        <div style="clear:both;"></div>
+                        <b><hr style=" margin-top: -3px; color:black" /></b>
+                        <div class="imageDiv" style=" margin-top: -13px; border: 2px solid black;">
+                            <img style="width:100%; height: 100%;border-radius: 1em;" src="@imgSrc" />
+                        </div>
+
+                        <div class="itemName" style=" font-size: 13px; height: 2.2em; background-color:black; color: white; text-align:center;overflow: auto;">
+                            @item.ItemName
+                        </div>
+
+                        <div class="cardBody" style=" background-color:black; color:white;">
+                            <div class="reviewCount">
+                                <b style=" color: yellow;">reviews required</b> <br />
+                                <p style="text-align: center"><b>@item.ReviesNeeded more</b></p>
+                            </div>
+
+                            <div class="Paypal">
+                                <b style=" color: yellow;">PaypalFee Inluded?</b><br />
+                                <p style="text-align: center"><b>@ppFeeIncluded</b></p>
+                            </div>
+
+                            <div style="clear:both;"></div>
+
+                            <div class="Refund">
+                                <b style=" color: yellow;">Days to refund After Review is live</b><br />
+                                <p style="text-align: center"><b>@item.RefundDaysTime</b></p>
+                            </div>
+
+                            <div style=" text-align:center; ">
+                                @*//<button asp-action="SellersItems/Details/@item.Id" class="BtnDetails oreInfoBtnIndex" id="moreInfoBtnIndex" value="@item.Id">More Details</button>*@
+                                <button type="button" title="Edit report" class="BtnDetails" onclick="location.href = '@Url.Action("Details", "SellersItems", new {id = item.Id})'">More Details</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+
+        }
+
+    </div>
+
+    <link href="~/css/homeindex.css" rel="stylesheet" />
+    <script src="~/js/site.js"></script>
+    <link href="~/css/flash.css" rel="stylesheet" />
+
+
+
+
+

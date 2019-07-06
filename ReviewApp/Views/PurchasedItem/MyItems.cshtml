@@ -1,0 +1,276 @@
+﻿
+@{
+    Layout = "_Layout";
+    int counter = 0;
+}
+
+
+@*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
+<div id="main">
+    @if (ViewBag.listImageRefund.Count != 0)
+    {
+
+
+
+        @foreach (var item in ViewBag.itemsList)
+        {
+            var base64 = Convert.ToBase64String(item.Image);
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            //  <img style="width:100px; height: 100px;" src="@imgSrc" />
+            string price = item.Price + "£";
+
+
+            var Image2base64 = Convert.ToBase64String(ViewBag.listImageRefund[counter]);
+            var Image2imgSrc = String.Format("data:image/gif;base64,{0}", Image2base64);
+            //  <img style="width:100px; height: 100px;" src="@imgSrc" />
+
+
+            if (item.KeyWords == "pending")
+            {
+                <div id="pendingDiv">
+                    <div id="form">
+                        <div style="display:none;" id="@item.Categories">
+                            <div id="main" style="margin:auto; margin-top:10% ">
+
+                                <form style="justify-content: center;" action="@Url.Action("MyItemsPost", "PurchasedItem")" method="post" enctype="multipart/form-data">
+                                    <label class="control-label">
+                                        <b style=" color: white">ScreenShot of Review</b><br />
+                                        <input class="form-control" type="file" name="files" value="" required />
+                                        <input name="Id" value="@item.Categories" hidden />
+
+                                        <input style="margin-top: 1em; float: left; " type="submit" value="Submit" class="btn btn-success" />
+
+
+                                </form>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+                    <div style="background-color:aliceblue; text-align:center;padding:10px; border-radius: 1em; margin-top:35px; width:100%; height: 220px;" class="outside">
+
+                        <div style="padding:3px; margin-top:-10px; color: black;text-align: left;" id=" purchasedAT">
+                            <small>purchased at : @item.CreatedAt</small>
+
+                        </div>
+                        <div style="float:right;">
+                            <b style=" color:black;">@price</b>
+                        </div>
+
+
+                        <div class="photoOutside" margin-top: 20px; style="border-radius: 1em;float:left; height:85%; width:35%; color: black;">
+                            <img style="width:100%; height: 100%;border-radius: 1em" src="@imgSrc" />
+                        </div>
+
+                        <div style="color:orangered; text-align:left;margin-left:37%; width: 63%; height:auto;">
+                            <b>Status:</b> In Progress
+                        </div>
+
+                        <div style="margin-top:5px; margin-left:37%; color: black; width: 63%; height:auto;">
+                            <b>@item.ItemName</b>
+                        </div>
+
+
+                        <div style="text-align:left;margin-top:5px; margin-left:37%; color: black; width: 63%; height:auto;">
+                            <b>OrderNum :</b> @item.Description
+                        </div>
+                        <div style="margin-top:5px; margin-left:37%;color: black; width: 63%; height:auto;">
+                            <br />
+
+
+                            <div style="overflow:auto">
+                                <button class=" btn btn-primary" id="@item.ItemName" onclick="myFunction(@item.Categories)">Refund Form</button><br />
+                                <small> Is a review live ?</small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <script>
+                    function myFunction(element) {
+                        var x = document.getElementById(element);
+                        if (x.style.display === "none") {
+                            $(x).show(1000);
+
+
+                        } else {
+                            $(x).hide(1000);
+
+                        }
+                    }
+                </script>
+
+
+            }
+            if (item.KeyWords == "reviewLive")
+            {
+                <div id="LiveDiv">
+                    <div style="background-color:aliceblue; text-align:center;padding:10px; border-radius: 1em; margin-top:35px; width:100%; height: 220px;" class="reviewIsLive">
+
+                        <div style="padding:3px; margin-top:-10px; color: black;text-align: left;" id=" purchasedAT">
+                            <small>purchased at : @item.CreatedAt</small>
+
+                        </div>
+                        <div style="float:right;">
+                            <b style=" color:black;">@price</b>
+                        </div>
+
+
+                        <div class="photoOutside" margin-top: 20px; style="border-radius: 1em;float:left; height:85%; width:35%; color: black;">
+                            <img style="width:100%; height: 100%;border-radius: 1em" src="@imgSrc" />
+                        </div>
+
+                        <div class="blink" style="color:yellow; text-align:left;margin-left:37%; width: 63%; height:auto;">
+                            <b>Status: Is Live </b>
+                        </div>
+
+                        <div style="margin-top:5px; margin-left:37%; color: black; width: 63%; height:auto;">
+                            <b style="">@item.ItemName</b>
+                        </div>
+
+
+                        <div style="text-align:left;margin-top:5px; margin-left:37%; color: black; width: 63%; height:auto;">
+                            <b>OrderNum :</b> @item.Description
+                        </div>
+                        <div style="margin-top:5px; margin-left:37%;color: black; width: 63%; height:auto;">
+                            <br />
+
+
+                            <div style="">
+
+                                <b> We are working on your <b style=" color: green;">Refund</b> !</b><br />
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            }
+            if (item.KeyWords == "completed")
+            {
+
+
+                <div id="completedDiv">
+
+                    <div class="modal fade" id="@item.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Transaction completed, please see confirmation below</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img style="width: 100%; height: 100%" src="@Image2imgSrc" alt="Alternate Text" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    <div style="background-color:white; text-align:center;padding:10px; border-radius: 1em; margin-top:35px; width:100%; height: 220px;" class="outsideCompleted">
+
+                        <div style="padding:3px; margin-top:-10px; color: black;text-align: left;" id=" purchasedAT">
+                            <small>purchased at : @item.CreatedAt</small>
+
+                        </div>
+                        <div style="float:right;">
+                            <b style=" color:black;">@price</b>
+                        </div>
+
+
+                        <div class="photoOutside" margin-top: 20px; style="border-radius: 1em;float:left; height:85%; width:35%; color: black;">
+                            <img style="width:100%; height: 100%;border-radius: 1em" src="@imgSrc" />
+                        </div>
+
+
+
+
+
+                        <div style="color:forestgreen; text-align:left;margin-left:37%; width: 63%; height:auto;">
+                            <b>Status:</b> Completed
+
+                            <p style="color: green; " id="review" data-toggle="modal" data-target="#@item.Id">
+                                Press here to see refund
+                                <img alt="l" src="~/images/5-stars-transparent-3.png" style="width:10%;max-width:300px" />
+                            </p>
+
+                        </div>
+
+
+
+
+                        <div style=" margin-left:37%; color: black; width: 63%; height:auto;">
+                            <b>@item.ItemName</b>
+                        </div>
+
+
+                        <div style="text-align:left;margin-top:5px; margin-left:37%; color: black; width: 63%; height:auto;">
+                            <b>OrderNum :</b> @item.Description
+                        </div>
+                        <div style="margin-top:5px; margin-left:37%;color: black; width: 63%; height:auto;">
+
+                            <div style="">
+                                <button class=" btn btn-success disabled">Completed</button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+
+            counter++;
+
+        }
+
+
+    }
+    else
+    {
+        <h1>You didn't have any purchased items. Go ahead and get some !</h1>
+    }
+</div>
+@*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="~/css/reviewlive.css" rel="stylesheet" />
+<link href="~/css/flash.css" rel="stylesheet" />
+<link href="~/css/myItems.css" rel="stylesheet" />
+<script src="~/js/toogle.js"></script>
+<style>
+
+    .reviewIsLive {
+        -webkit-box-shadow: 0px 1px 16px 8px rgba(240,240,5,1);
+        -moz-box-shadow: 0px 1px 16px 8px rgba(240,240,5,1);
+        box-shadow: 0px 1px 16px 8px rgba(240,240,5,1);
+    }
+</style>

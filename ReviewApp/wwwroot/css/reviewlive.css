@@ -1,0 +1,8 @@
+﻿/* Style the Image Used to Trigger the Modal */
+#review {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+  

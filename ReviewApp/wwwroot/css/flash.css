@@ -1,0 +1,17 @@
+﻿.blink {
+    animation: blink-animation 1s steps(5, start) infinite;
+    
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+        color:red
+    }
+}
+
+@-webkit-keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
