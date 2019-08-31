@@ -30,7 +30,7 @@ namespace ReviewApp.Controllers
         {
 
             ReviewsContext db = new ReviewsContext();
-            List<UsersAccount> CheckIfAccountAlreadyTaken = db.UsersAccount.ToList().Where(a => a.Login == login && a.Password == password )
+            List<UsersAccount> CheckIfAccountAlreadyTaken = db.UsersAccount.ToList().Where(a => a.Login == login && a.Password == password)
                                                                                                                     .Select(a => a).ToList();
 
             if (CheckIfAccountAlreadyTaken.Count() == 0)
@@ -74,11 +74,11 @@ namespace ReviewApp.Controllers
             }
 
             ModelState.AddModelError("error", "Student Name already exists.");
-         
+
             return View("Login"); ;
         }
 
 
     }
-   
+
 }

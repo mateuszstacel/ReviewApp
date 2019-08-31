@@ -31,7 +31,7 @@ namespace ReviewApp
         }
 
 
-        // GET: SellersItems/Details/5
+       // GET: SellersItems/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             ViewBag.Id = HttpContext.Session.GetString("Id");
@@ -52,15 +52,15 @@ namespace ReviewApp
             return View(sellersItems);
         }
 
-        // GET: SellersItems/Create
+      //  GET: SellersItems/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: SellersItems/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+       // POST: SellersItems/Create
+       // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+       //  more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Image,Price,ItemName,Description,StoreName,KeyWords,ReviesNeeded,RefundDaysTime,Ppfee,Categories")] SellersItems sellersItems, List<IFormFile> files)
@@ -91,8 +91,8 @@ namespace ReviewApp
                 string email = HttpContext.Session.GetString("Email");
                 sellersItems.SellerEmail = email;
                 sellersItems.SellerId = sellerId;
-                //int maxValue = _context.SellersItems.Max(x => x.Id);
-                //sellersItems.Id = maxValue + 1;
+                int maxValue = _context.SellersItems.Max(x => x.Id);
+                sellersItems.Id = maxValue + 1;
                 sellersItems.CreatedAt = DateTime.Now;
                 _context.Add(sellersItems);
                 await _context.SaveChangesAsync();
@@ -101,12 +101,12 @@ namespace ReviewApp
             return View(sellersItems);
         }
 
-        // GET: SellersItems/Edit/5
+       // GET: SellersItems/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             string role = HttpContext.Session.GetString("role");
             ViewBag.role = HttpContext.Session.GetString("role");
-            if ( role != "seller")
+            if (role != "seller")
             {
                 return RedirectToAction("login", "login");
             }
@@ -124,15 +124,15 @@ namespace ReviewApp
             return View(sellersItems);
         }
 
-        // POST: SellersItems/Edit/5
+       // POST: SellersItems/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+         //more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Image,Price,ItemName,Description,StoreName,KeyWords,ReviesNeeded,RefundDaysTime,Ppfee,Categories")] SellersItems sellersItems, List<IFormFile> files)
         {
             string role = HttpContext.Session.GetString("role");
-            if ( role != "seller")
+            if (role != "seller")
             {
                 return RedirectToAction("login", "login");
             }
@@ -179,7 +179,7 @@ namespace ReviewApp
             return View(sellersItems);
         }
 
-        // GET: SellersItems/Delete/5
+      //  GET: SellersItems/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -197,7 +197,7 @@ namespace ReviewApp
             return RedirectToAction("Index", "Home");
         }
 
-        // POST: SellersItems/Delete/5
+       // POST: SellersItems/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -210,7 +210,7 @@ namespace ReviewApp
 
 
         [HttpPost]
-        public async Task<IActionResult> PurchaseItemPost(string orderNum, string paypal,int itemId, int sellerId, List<IFormFile> files)
+        public async Task<IActionResult> PurchaseItemPost(string orderNum, string paypal, int itemId, int sellerId, List<IFormFile> files)
         {
             PurchasedItems currentPurchase = new PurchasedItems();
             currentPurchase.OrderNumber = orderNum;
@@ -234,7 +234,7 @@ namespace ReviewApp
                         }
                     }
                 }
-  
+
                 _context.Add(currentPurchase);
                 await _context.SaveChangesAsync();
 
@@ -244,7 +244,7 @@ namespace ReviewApp
 
                 foreach (var item in itemToUpdate)
                 {
-                   HowmanyReviews = item.ReviesNeeded - 1;
+                    HowmanyReviews = item.ReviesNeeded - 1;
                 }
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -252,19 +252,19 @@ namespace ReviewApp
 
                     conn.Open();
 
-                    // 1.  create a command object identifying the stored procedure
-                    SqlCommand cmd = new SqlCommand("ReviewsNeeded", conn);
+                //    1.create a command object identifying the stored procedure
+                 SqlCommand cmd = new SqlCommand("ReviewsNeeded", conn);
 
-                    // 2. set the command object so it knows to execute a stored procedure
+                  //  2.set the command object so it knows to execute a stored procedure
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    // 3. add parameter to command, which will be passed to the stored procedure
+                  //  3.add parameter to command, which will be passed to the stored procedure
                     cmd.Parameters.Add(new SqlParameter("@number", HowmanyReviews));
 
                     cmd.Parameters.Add(new SqlParameter("@Id", itemId));
 
 
-                    // execute the command
+                 //   execute the command
                     cmd.ExecuteNonQuery();
 
 
@@ -274,7 +274,7 @@ namespace ReviewApp
                 ReviewsContext db = new ReviewsContext();
 
                 UsersAccount seller = db.UsersAccount.ToList().Where(x => x.Id == sellerId).FirstOrDefault();
-               SellersItems soldItem = db.SellersItems.ToList().Where(x => x.Id == itemId).FirstOrDefault();
+                SellersItems soldItem = db.SellersItems.ToList().Where(x => x.Id == itemId).FirstOrDefault();
 
 
                 MailMessage mail = new MailMessage("reviewtrades1945@gmail.com", seller.Email);
@@ -285,7 +285,7 @@ namespace ReviewApp
                 client.Credentials = new NetworkCredential("reviewtrades1945@gmail.com", "Password1234!");
                 client.EnableSsl = true;
                 client.Host = "smtp.gmail.com";
-                //mail.To.Add("add more peoples...");
+                mail.To.Add("add more peoples...");
                 mail.Subject = "You have Sold " + soldItem.ItemName + "!";
                 mail.IsBodyHtml = true;
 
@@ -293,7 +293,7 @@ namespace ReviewApp
                     "<br><p><b>You have sold :</b> " + soldItem.ItemName + "</p>" +
                     "<b>Order number : </b>" + orderNum +
                     "<br><p>we will let you know once review will be live.</p>" +
-                    "<br><p>Thank you for using our service<p>"+
+                    "<br><p>Thank you for using our service<p>" +
                     "<p><b>Reviews Trade Team.</b><p>";
                 client.Send(mail);
 
@@ -397,9 +397,9 @@ namespace ReviewApp
             {
                 var currentItem = db.SellersItems.ToList().Where(x => x.Id == item.ItemId).Select(x => x).ToList();
                 ViewBag.Paypal = item.Ppemail;
-                
+
                 SellersItems itemCurrent = new SellersItems();
-                
+
                 {
                     itemCurrent.Categories = currentItem[0].Categories;
                     itemCurrent.CreatedAt = item.DateOfPurchased;
@@ -456,19 +456,19 @@ namespace ReviewApp
 
                     conn.Open();
 
-                    // 1.  create a command object identifying the stored procedure
-                    SqlCommand cmd = new SqlCommand("CompletePurchase", conn);
+                  //  1.create a command object identifying the stored procedure
+                 SqlCommand cmd = new SqlCommand("CompletePurchase", conn);
 
-                    // 2. set the command object so it knows to execute a stored procedure
+                //    2.set the command object so it knows to execute a stored procedure
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    // 3. add parameter to command, which will be passed to the stored procedure
+                  //  3.add parameter to command, which will be passed to the stored procedure
                     cmd.Parameters.Add(new SqlParameter("@Id", Int32.Parse(Id)));
 
                     cmd.Parameters.Add(new SqlParameter("@Image", image));
 
 
-                    // execute the command
+                  //  execute the command
                     cmd.ExecuteNonQuery();
 
                 }

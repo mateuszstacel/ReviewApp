@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ReviewApp.Models;
+
 
 namespace ReviewApp
 {
@@ -40,7 +40,7 @@ namespace ReviewApp
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromHours(60);
             });
-            services.AddTransient<ReviewsContext, ReviewsContext>();
+            //services.AddTransient<ReviewsContext, ReviewsContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -60,7 +60,6 @@ namespace ReviewApp
             app.UseStaticFiles();
             app.UseSession();
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>

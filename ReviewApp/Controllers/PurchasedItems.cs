@@ -37,7 +37,7 @@ namespace ReviewApp.Controllers
         {
             string id = HttpContext.Session.GetString("Id");
             string role = HttpContext.Session.GetString("role");
-            if (id == null || role == "buyer" || role =="seller")
+            if (id == null || role == "buyer" || role == "seller")
             {
                 return RedirectToAction("login", "login");
             }
@@ -48,7 +48,7 @@ namespace ReviewApp.Controllers
             List<SellersItems> list = new List<SellersItems>();
             List<byte[]> listImageRefund = new List<byte[]>();
             var items = db.PurchasedItems.ToList().Where(x => x.BuyerId.ToString() == Userid).Select(a => a).ToList();
-  
+
 
             foreach (var item in items)
             {
@@ -57,23 +57,23 @@ namespace ReviewApp.Controllers
 
                 SellersItems itemCurrent = new SellersItems();
                 {
-                itemCurrent.Categories = item.Id.ToString();
-                itemCurrent.CreatedAt = item.DateOfPurchased;
-                itemCurrent.Description = item.OrderNumber;
-                itemCurrent.Id = currentItem[0].Id;
-                itemCurrent.Image = currentItem[0].Image;
-                itemCurrent.ItemName = currentItem[0].ItemName;
-                itemCurrent.KeyWords = item.Status;
-                itemCurrent.Ppfee = currentItem[0].Ppfee;
-                itemCurrent.Price = currentItem[0].Price;
-                itemCurrent.RefundDaysTime = currentItem[0].RefundDaysTime;
-                itemCurrent.ReviesNeeded = currentItem[0].ReviesNeeded;
-                itemCurrent.SellerEmail = currentItem[0].SellerEmail;
-                itemCurrent.SellerId = currentItem[0].SellerId;
-                itemCurrent.StoreName = currentItem[0].StoreName;
-            };
+                    itemCurrent.Categories = item.Id.ToString();
+                    itemCurrent.CreatedAt = item.DateOfPurchased;
+                    itemCurrent.Description = item.OrderNumber;
+                    itemCurrent.Id = currentItem[0].Id;
+                    itemCurrent.Image = currentItem[0].Image;
+                    itemCurrent.ItemName = currentItem[0].ItemName;
+                    itemCurrent.KeyWords = item.Status;
+                    itemCurrent.Ppfee = currentItem[0].Ppfee;
+                    itemCurrent.Price = currentItem[0].Price;
+                    itemCurrent.RefundDaysTime = currentItem[0].RefundDaysTime;
+                    itemCurrent.ReviesNeeded = currentItem[0].ReviesNeeded;
+                    itemCurrent.SellerEmail = currentItem[0].SellerEmail;
+                    itemCurrent.SellerId = currentItem[0].SellerId;
+                    itemCurrent.StoreName = currentItem[0].StoreName;
+                };
 
-            list.Add(itemCurrent);
+                list.Add(itemCurrent);
 
 
                 if (item.Status == "completed")
@@ -86,7 +86,7 @@ namespace ReviewApp.Controllers
                     var oneItem = new byte[] { 0x20 };
                     listImageRefund.Add(oneItem);
 
-                }        
+                }
 
             }
 
@@ -103,12 +103,12 @@ namespace ReviewApp.Controllers
             PurchasedItems currentPurchase = new PurchasedItems();
 
             int currentID = Int32.Parse(Id);
-            
+
             var Currentitem = _context.PurchasedItems.Where(x => x.Id == currentID).Select(x => x).ToList();
             byte[] image = new byte[12];
             if (ModelState.IsValid)
             {
-                
+
                 foreach (var item in files)
                 {
                     if (item.Length > 0)
@@ -116,7 +116,7 @@ namespace ReviewApp.Controllers
                         using (var stream = new MemoryStream())
                         {
                             await item.CopyToAsync(stream);
-                             image = stream.ToArray();
+                            image = stream.ToArray();
                         }
                     }
                 }
@@ -164,6 +164,6 @@ namespace ReviewApp.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-      
+
     }
 }

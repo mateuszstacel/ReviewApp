@@ -22,7 +22,7 @@ namespace ReviewApp.Controllers
         {
             string id = HttpContext.Session.GetString("Id");
 
-            var purchasedList = _context.PurchasedItems.ToList(). Where(x => x.BuyerId.ToString() == id).Select(x => x).ToList();
+            var purchasedList = _context.PurchasedItems.ToList().Where(x => x.BuyerId.ToString() == id).Select(x => x).ToList();
 
             List<string> itemsID = new List<string>();
 
@@ -35,18 +35,18 @@ namespace ReviewApp.Controllers
 
             if (id == null)
             {
-               return RedirectToAction("login", "login");
+                return RedirectToAction("login", "login");
             }
             string role = HttpContext.Session.GetString("role");
 
             ViewBag.role = role;
 
-           
+
 
             return View(await _context.SellersItems.ToListAsync());
         }
 
-       
+
 
     }
 }
